@@ -1,6 +1,8 @@
 import random
 import time
 fighting = True
+accepting_Damage = True
+accepting_Health = True
 
 class Hero():  
   def __init__(self, weapon, health):
@@ -32,9 +34,21 @@ class Monster():
     
   def attacked(self, weapon):
     self.health = self.health - weapon
+
+while accepting_Damage:
+  hero_Damage = input("Specify how much damage you want your hero to do: ")
+  try: hero_Damage = int(hero_Damage)
+  except ValueError: print("Please enter a number")
+  else: accepting_Damage = False
     
-hero = Hero(3, 10)
-monster = Monster(2, 15)
+while accepting_Health:
+  hero_Health = input("Specify how much health you want your hero to have: ")
+  try: hero_Health = int(hero_Health)
+  except ValueError: print("Please enter a number")
+  else: accepting_Health = False
+
+hero = Hero(hero_Damage, hero_Health)
+monster = Monster(random.randint(1, 50), random.randint(5, 100))
 
 while fighting:
   rand = random.randint(0,1)
